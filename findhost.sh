@@ -11,12 +11,14 @@ read endip
 echo "Scanning ip $network_id . $startip . $endip"
 
 for((i=startip; i<=endip; i++ )); do
-    ping -c 1 -w 1 "$network_id.$i"
+    ping -c 1 -w 1 "$network_id.$i" >/dev/null &
 done
 
-clear
+echo "Done Scanning"
 
 arp -e | grep -v incomplete > arp_cache.txt
+
+echo "Finding host ventor names"
 
 pyt=$(python3 mac_man.py)
 echo "$pyt"
