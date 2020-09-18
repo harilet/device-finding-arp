@@ -1,16 +1,18 @@
+import sys
+import os
+import subprocess
+
 try:
     from mac_vendor_lookup import MacLookup    #for mac address lookup
 except ImportError as e:
     print("install mac_vendor_lookup module")
+    sys.exit()
 
 try:
     from tabulate import tabulate               #to display in a table format
 except ImportError as e:
     print("install tabulate module")
-
-import sys
-import os
-import subprocess
+    sys.exit()
 
 #geting mac address from the arp table
 proc = subprocess.Popen(["arp -e | grep -v incomplete | awk -F \" \" {'print $3'} | grep -v HWaddress |awk -F \":\" {'print $1\":\"$2\":\"$3\":\"$4\":\"$5'}"], stdout=subprocess.PIPE, shell=True)
