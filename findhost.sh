@@ -16,7 +16,7 @@ done
 
 echo "Done Scanning"
 
-arp -e | grep -v incomplete > arp_cache.txt
+sleep 2
 
 echo "Finding host ventor names"
 
